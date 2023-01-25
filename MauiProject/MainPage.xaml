@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:avatar="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:local="clr-namespace:MauiProject"
+             x:Class="MauiProject.MainPage">
+    <ContentPage.BindingContext>
+        <local:ListViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <!-- Below Avatar shows the GroupView: 3 initials at single avatar  
+        <avatar:SfAvatarView ContentType="Group"
+                             GroupSource="{Binding NameList}"
+                             InitialsType="SingleCharacter"
+                             InitialsMemberPath="Name"
+                             HeightRequest="100"
+                             WidthRequest="100"
+                             CornerRadius="50"></avatar:SfAvatarView>-->
+        <sf:SfListView ItemsSource="{Binding NameList}" ItemSize="60"
+                       SelectionMode="None" ItemSpacing="5">
+            <sf:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <!--
+                            Set below propertiees for content type initials.
+                            InitialsType="DoubleCharacter"
+                            AvatarName="{Binding Name}"
+                            Set below property for content type AvatarCharacter
+                            AvatarCharacter="Avatar8"-->
+                        <avatar:SfAvatarView ContentType="Custom"
+                                             ImageSource="avatarview.png"
+                                             AvatarShape="Circle"
+                                             StrokeThickness="5"
+                                             Stroke="Blue"
+                                             BackgroundColor="Bisque"></avatar:SfAvatarView>
+                        <Grid Grid.Column="1" VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding Name}"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="20"
+                                   TextColor="Black"
+                                   Margin="10" />
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </sf:SfListView.ItemTemplate>
+        </sf:SfListView>
+    </StackLayout>
+</ContentPage>
